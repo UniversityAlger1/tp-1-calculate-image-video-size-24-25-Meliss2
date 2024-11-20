@@ -9,8 +9,31 @@
 // Return value
 //   colored video size (based on the unit passed parametter)
 float video(int w, int h, int durationMovie, int durationCredits, int fps, char* unit) {
-   // YOUR CODE HERE - BEGIN
+ int colorFrameSize = w * h * 3; // 3 bytes per pixel for RGB
+    int grayFrameSize = w * h;     // 1 byte per pixel for grayscale
 
-   // YOUR CODE HERE - END
-   return 0;
+    // Calculate the total number of frames
+    int totalColorFrames = durationMovie * fps;
+    int totalGrayFrames = durationCredits * fps;
+
+    // Calculate the total size in bytes
+    long long totalSizeBytes = 
+        (long long)totalColorFrames * colorFrameSize + 
+        (long long)totalGrayFrames * grayFrameSize;
+
+    // Convert the size based on the unit
+    float convertedSize = 0.0;
+    if (strcmp(unit, "bt") == 0) {
+        convertedSize = totalSizeBytes; // bytes
+    } else if (strcmp(unit, "ko") == 0) {
+        convertedSize = (totalSizeBytes * 8.0) / 1024.0; // kilobits
+    } else if (strcmp(unit, "mo") == 0) {
+        convertedSize = (totalSizeBytes * 8.0) / (1024.0 * 1024.0); // megabits
+    } else if (strcmp(unit, "go") == 0) {
+        convertedSize = (totalSizeBytes * 8.0) / (1024.0 * 1024.0 * 1024.0); // gigabits
+    } else {
+        return 0; // Invalid unit
+    }
+
+    return convertedSize;
 }
