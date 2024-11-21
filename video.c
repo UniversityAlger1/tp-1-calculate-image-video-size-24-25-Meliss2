@@ -17,9 +17,7 @@ float video(int w, int h, int durationMovie, int durationCredits, int fps, char*
     int totalGrayFrames = durationCredits * fps;
 
     // Calculate the total size in bytes
-    long long totalSizeBytes = 
-        (long long)totalColorFrames * colorFrameSize + 
-        (long long)totalGrayFrames * grayFrameSize;
+    int totalSizeBytes = (( totalColorFrames * colorFrameSize) + (totalGrayFrames * grayFrameSize));
 
     // Convert the size based on the unit
     float convertedSize = 0.0;
