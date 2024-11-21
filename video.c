@@ -23,7 +23,7 @@ float video(int w, int h, int durationMovie, int durationCredits, int fps, char*
 
     // Convert the size based on the unit
     float convertedSize = 0.0;
-    if (strcmp(unit, "bt") == 0) {
+    if (unit == NULL || strcmp(unit, "bt") == 0){
         convertedSize = totalSizeBytes; // bytes
     } else if (strcmp(unit, "ko") == 0) {
         convertedSize = (totalSizeBytes * 8.0) / 1024.0; // kilobits
